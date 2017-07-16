@@ -1,11 +1,14 @@
 Role Name
 =========
 
-Enables vino server for a certain user. This is requried to be able connect to Ubuntu 16.04
+Enables vino server for a certain user. This is requried to be able connect to Ubuntu 16.04.
+It is also required to configure Ubuntu to do autologin at startup with immediate autolock.
+See role `autologin_with_immediate_autolock`
 
 Requirements
 ------------
 
+ToDo
 
 
 Role Variables
