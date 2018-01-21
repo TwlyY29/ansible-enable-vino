@@ -7,21 +7,18 @@
 #curl https://raw.githubusercontent.com/Alex2357/ansible-dconf/master/dconf.py > /etc/ansible/library/dconf
 - name: vino enable remote access. If fails see comment above in yml
   dconf:
-    user: "{{ vino_user }}"
     key: '/org/gnome/desktop/remote-access/enabled'
     value: 'true'
   become: yes
 
 - name: vino disable prompt
   dconf:
-    user: "{{ vino_user }}"
     key: '/org/gnome/desktop/remote-access/prompt-enabled'
     value: 'false'    
   become: yes
 
 - name: vino /org/gnome/desktop/remote-access/require-encryption
   dconf:
-    user: "{{ vino_user }}"
     key: '/org/gnome/desktop/remote-access/require-encryption'
     value: 'false'        
   become: yes
