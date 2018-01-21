@@ -1,11 +1,7 @@
 ---
 # tasks file for enable-vino
 
-# dconf module is a custom module which needs to be added to your ansible project.
-# main ansible repository was in /etc/ansible. I have added it using
-#mkdir /etc/ansible/library
-#curl https://raw.githubusercontent.com/Alex2357/ansible-dconf/master/dconf.py > /etc/ansible/library/dconf
-- name: vino enable remote access. If fails see comment above in yml
+- name: vino enable remote access.
   dconf:
     key: '/org/gnome/desktop/remote-access/enabled'
     value: 'true'
