@@ -1,5 +1,12 @@
----
+- import_tasks: "{{ role_path }}/tasks/setup_install.yml"
+  when: ms_vnc_enabled|bool
+  tags:
+    - setup-all
+    - setup-ms-vnc
 
-- import_tasks: enable-vino.yml 
-  become: yes
-  become_user: "{{ vino_user }}"
+- import_tasks: "{{ role_path }}/tasks/setup_uninstall.yml"
+  when: not ms_vnc_enabled|bool
+  tags:
+    - setup-all
+    - setup-ms-vnc
+

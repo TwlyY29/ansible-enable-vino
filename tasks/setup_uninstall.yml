@@ -1,18 +1,21 @@
----
-# tasks file for enable-vino
 
 - name: vino enable remote access.
   dconf:
     key: '/org/gnome/desktop/remote-access/enabled'
-    value: 'true'
+    value: 'false'
+  become: yes
+  become_user: "{{ ms_vino_user }}"
 
 - name: vino disable prompt
   dconf:
     key: '/org/gnome/desktop/remote-access/prompt-enabled'
-    value: 'false'    
+    value: 'true'   
+  become: yes
+  become_user: "{{ ms_vino_user }}"
 
 - name: vino /org/gnome/desktop/remote-access/require-encryption
   dconf:
     key: '/org/gnome/desktop/remote-access/require-encryption'
-    value: 'false'        
-    
+    value: 'true'   
+  become: yes
+  become_user: "{{ ms_vino_user }}"

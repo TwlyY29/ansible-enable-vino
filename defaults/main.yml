@@ -1,2 +1,4 @@
 ---
 # defaults file for enable-vino
+ms_vnc_enabled: false
+ms_vino_user: "{{ansible_env.USER}}"

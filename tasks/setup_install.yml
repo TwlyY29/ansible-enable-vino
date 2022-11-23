@@ -1,0 +1,52 @@
+---
+# tasks file for enable-vino
+
+- name: install packages to adjust settings
+  apt:
+    pkg:
+      - dconf-editor
+      - vino
+  become: yes
+  
+- name: install python psutil
+  pip:
+    name: psutil
+    extra_args: --user
+    state: latest
+
+- name: vino enable remote access.
+  dconf:
+    key: '/org/gnome/desktop/remote-access/enabled'
+    value: 'true'
+  become: yes
+  become_user: "{{ ms_vino_user }}"
+
+- name: vino disable prompt
+  dconf:
+    key: '/org/gnome/desktop/remote-access/prompt-enabled'
+    value: 'false'   
+  become: yes
+  become_user: "{{ ms_vino_user }}" 
+
+- name: vino /org/gnome/desktop/remote-access/require-encryption
+  dconf:
+    key: '/org/gnome/desktop/remote-access/require-encryption'
+    value: 'false'   
+  become: yes
+  become_user: "{{ ms_vino_user }}" 
+
+- name: Create autostart directory if it does not exist
+  file:
+    path: "{{ansible_env.HOME}}/.config/autostart/"
+    state: directory
+    mode: '0755'
+
+- name: install autostart entry
+  copy:
+    src: vnc.autostart
+    dest: "{{ansible_env.HOME}}/.config/autostart/vino-server.desktop"    
+    
+- name: start vino server
+  shell: export DISPLAY=':0' && /usr/lib/vino/vino-server &
+  become: yes
+  become_user: "{{ ms_vino_user }}"
