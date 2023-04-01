@@ -1,11 +1,11 @@
 - import_tasks: "{{ role_path }}/tasks/setup_install.yml"
-  when: ms_vnc_enabled|bool
+  when: (ms_vnc_enabled|bool) and (ENV_DESKTOP_SESSION is defined)
   tags:
     - setup-all
     - setup-ms-vnc
 
 - import_tasks: "{{ role_path }}/tasks/setup_uninstall.yml"
-  when: not ms_vnc_enabled|bool
+  when: (not ms_vnc_enabled|bool) and (ENV_DESKTOP_SESSION is defined)
   tags:
     - setup-all
     - setup-ms-vnc

@@ -1,5 +1,5 @@
 
-- name: vino enable remote access.
+- name: vino disable remote access.
   dconf:
     key: '/org/gnome/desktop/remote-access/enabled'
     value: 'false'
